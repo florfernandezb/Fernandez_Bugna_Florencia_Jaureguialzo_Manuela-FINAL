@@ -1,12 +1,12 @@
-<?PHP
+<?php
 
 function processProductImage(array $file): ?string
 {
-    if (empty($file) || ($file['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) {
+    if (empty($file) || $file['error'] === UPLOAD_ERR_NO_FILE) {
         return null;
     }
 
-    if (($file['error'] ?? UPLOAD_ERR_OK) !== UPLOAD_ERR_OK) {
+    if ($file['error'] !== UPLOAD_ERR_OK) {
         throw new Exception("Error al subir la imagen.");
     }
 
@@ -20,16 +20,13 @@ function processProductImage(array $file): ?string
         $extension = 'jpg';
     }
 
-    $safeBase = preg_replace('/[^a-zA-Z0-9_-]+/', '_', pathinfo($file['name'], PATHINFO_FILENAME));
-    $safeBase = trim($safeBase, '_') ?: 'producto_' . time();
+    $safeName = preg_replace('/[^a-zA-Z0-9_-]/', '_', pathinfo($file['name'], PATHINFO_FILENAME));
+    $safeName = $safeName ?: 'producto_' . time();
 
-    $targetDir = realpath(__DIR__ . '/../../res/products');
-    if ($targetDir === false || !is_writable($targetDir)) {
-        throw new Exception("La carpeta de imágenes no es válida o no tiene permisos.");
-    }
+    $targetDir = __DIR__ . '/../../res/products/';
+    $finalName = $safeName . '.' . $extension;
 
-    $finalName = $safeBase . '.' . $ext;
-    $targetPath = $targetDir . DIRECTORY_SEPARATOR . $finalName;
+    $targetPath = $targetDir . $finalName;
 
     if (!move_uploaded_file($file['tmp_name'], $targetPath)) {
         throw new Exception("No se pudo guardar la imagen.");

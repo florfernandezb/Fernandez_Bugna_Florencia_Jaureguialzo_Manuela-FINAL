@@ -4,49 +4,42 @@ require_once 'User.php';
 
 class Authentication
 {
-    public function log_in(string $user, string $password) : ?string
+    public function log_in(string $user, string $password): ?string
     {
-        $dataUser = (new User()) -> users($user);
-        
+        $dataUser = (new User())->users($user);
+
         if ($dataUser) {
-            $storedPassword = (string)$dataUser->getPassword();
 
-            $isHashed = str_starts_with($storedPassword, '$2y$')
-                || str_starts_with($storedPassword, '$2a$')
-                || str_starts_with($storedPassword, '$2b$');
+            $storedPassword = $dataUser->getPassword();
 
-            $valid = $isHashed ? password_verify($password, $storedPassword) : ($password === $storedPassword);
+            if (password_verify($password, $storedPassword) || $password === $storedPassword) {
 
-            if ($valid) {
-                // Si estaba en claro, lo upgradeamos a hash automáticamente
-                if (!$isHashed) {
-                    $newHash = password_hash($password, PASSWORD_DEFAULT);
-                    (new User())->updatePasswordHash((int)$dataUser->getId(), $newHash);
-                } elseif (password_needs_rehash($storedPassword, PASSWORD_DEFAULT)) {
+                if (!password_verify($password, $storedPassword)) {
                     $newHash = password_hash($password, PASSWORD_DEFAULT);
                     (new User())->updatePasswordHash((int)$dataUser->getId(), $newHash);
                 }
 
-                $dataLogin['username'] = $dataUser->getUsername();
-                $dataLogin['id'] = $dataUser -> getId();
-                $dataLogin['rol'] = $dataUser -> getRole();
-                $_SESSION['loggedIn'] = $dataLogin;
-                
-                return $dataLogin['rol'];
+                $_SESSION['loggedIn'] = [
+                    'id' => $dataUser->getId(),
+                    'username' => $dataUser->getUsername(),
+                    'rol' => $dataUser->getRole()
+                ];
+
+                return $dataUser->getRole();
+
             } else {
                 $_SESSION['login_error'] = "La contraseña ingresada es incorrecta.";
-                return NULL;
+                return null;
             }
-        } else{
+
+        } else {
             $_SESSION['login_error'] = "El usuario ingresado no se encontró en nuestra base de datos.";
-            return NULL;
+            return null;
         }
     }
 
-    public function log_out()
+    public function log_out(): void
     {
-        if (isset($_SESSION['loggedIn'])) {
-            unset($_SESSION['loggedIn']);
-        };
+        unset($_SESSION['loggedIn']);
     }
 }
