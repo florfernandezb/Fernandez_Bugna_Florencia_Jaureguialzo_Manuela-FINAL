@@ -1,6 +1,7 @@
 <?PHP
 require_once __DIR__ . '/routes/routes.php';
 require_once "../functions/autoload.php";
+require_once "../functions/auth_helpers.php";
 
 $routes = getRoutesSitio();
 
@@ -49,7 +50,7 @@ require_admin_and_redirect();
                 </li>
                 <li ><a  href="index.php?a=category_crud">Categorías</a></li>
                 <li ><a  href="index.php?a=color_crud">Colores</a></li>
-                <li ><a  href="actions/auth_logout.php">LOGOUT</a></li>
+                <li ><a  href="./admin/actions/auth_logout.php">LOGOUT</a></li>
             </ul>
         </nav>
     </header>

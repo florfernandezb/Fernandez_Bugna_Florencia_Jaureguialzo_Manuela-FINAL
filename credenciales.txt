@@ -8,7 +8,7 @@ email: 'manuela.jaureguialzo@davinci.edu.ar',
 username:'manu', 
 full_name: 'Manuela Jaureguialzo', 
 password: '1410', 
-'user'),
+rol: 'user',
 
 email: 'jorge.perez@davinci.edu.ar', 
 username: 'jorgepe', 

@@ -44,6 +44,9 @@ function getRoutesSitio() {
         ],
         "delete_color" => [
             "title" => "Elimina un color"
+        ],
+        "generic_error" => [
+            "title" => "Algo salió mal"
         ]
     ];
 }

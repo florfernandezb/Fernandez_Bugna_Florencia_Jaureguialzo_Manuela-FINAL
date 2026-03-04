@@ -577,3 +577,27 @@ legend {
     height: auto;
     object-fit: contain;
 }
+
+.error-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    color: #721c24;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.error-container h3 {
+    margin-top: 0;
+    font-size: 1.4rem;
+}
+
+.error-container a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #721c24;
+    text-decoration: underline;
+    font-weight: bold;
+}

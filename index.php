@@ -6,6 +6,7 @@ require_once __DIR__ . '/class/DatabaseConection.php';
 require_once __DIR__ . '/route/route.php';
 
 require_once "functions/autoload.php";
+require_once "functions/auth_helpers.php";
 
 $routes = getRoutesSitio();
 
@@ -73,7 +74,11 @@ $total = (new Cart())->precio_total();
                 </li>
                 <li ><a  href="index.php?s=formContacto">Contacto</a></li>
                 <li ><a  href="index.php?s=datos">Datos de las alumnas</a></li>
-                <li ><a  href="index.php?s=login">Admin</a></li>
+                <li>
+                    <a href="<?= is_logged_in() ? './admin/actions/auth_logout.php' : 'index.php?s=login' ?>">
+                        <?= is_logged_in() ? 'LOGOUT' : 'Admin' ?>
+                    </a>
+                </li>
             </ul>
             <?php
                 $cartHref = is_logged_in() ? "index.php?s=cart" : "index.php?s=login";
