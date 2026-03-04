@@ -1,0 +1,17 @@
+email: 'florencia.fernandezb@davinci.edu.ar', 
+username: 'florenciafernandezb', 
+full_name: 'Florencia Fernández', 
+password: 'asd123', 
+rol:'superadmin',
+
+email: 'manuela.jaureguialzo@davinci.edu.ar', 
+username:'manu', 
+full_name: 'Manuela Jaureguialzo', 
+password: '1410', 
+'user'),
+
+email: 'jorge.perez@davinci.edu.ar', 
+username: 'jorgepe', 
+full_name: 'Jorge Perez', 
+password: 'jorge1234', 
+rol: 'admin'

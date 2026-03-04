@@ -1,0 +1,14 @@
+Carrera: Diseño y Programación Web
+Materia: Programación 2
+Cuatrimestre: 1
+Año: 2022
+Turno: Noche
+Comisión: DWN3AV
+Apellido alumna 1: Fernández Bugna
+Nombre alumna 1: Florencia
+Apellido alumna 2: Jaureguialzo
+Nombre alumna 2: Manuela
+Docente: Gallino, Santiago
+Carácter: 1er parcial
+
+TP entregado en el segundo cuatrimestre del 2021 en Programación 2 turno noche.

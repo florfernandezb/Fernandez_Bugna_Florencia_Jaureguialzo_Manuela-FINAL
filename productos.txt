@@ -1,0 +1,43 @@
+ENTIDADES
+
+    PRODUCTOS
+    id > INT / PRIMARY_KEY, AUTO_INCREMENT, NOT NULL, UNSIGNED
+    name > VARCHAR(256)
+    price > FLOAT(8,2) 
+    category_id > INT / INDEX, NOT NULL, UNSIGNED
+    measurements > FLOAT(8,2)
+    productDescription > TEXT/VARCHAR(256)
+    image > VARCHAR(256)
+    imageDescription > VARCHAR(256)
+    availableDate > DATE
+    colors > INT / INDEX, NOT NULL, UNSIGNED
+    // quantity > INT
+
+    CATEGORIAS
+    id > INT PRIMARY_KEY, AUTO_INCREMENT, NOT NULL, UNSIGNED
+    nombre > VARCHAR(256)
+
+    COLORS
+    id > INT PRIMARY_KEY, AUTO_INCREMENT, NOT NULL, UNSIGNED
+    title > VARCHAR(256)
+
+    USUARIOS
+    id > INT PRIMARY_KEY, AUTO_INCREMENT, NOT NULL, UNSIGNED
+    email > VARCHAR(256)
+    nick_name > VARCHAR(256)
+    nombre_completo > VARCHAR(256)
+    contraseña > VARCHAR(256)
+    role > enum
+
+
+    las tablas pivote:
+
+    productos_x_categoria
+    id
+    product_id ---> id (tabla product)
+    categorory_id --> id tabla (category)
+
+    productos_x_color
+    id
+    product_id ---> id (tabla product)
+    color_id --> id tabla (category)
